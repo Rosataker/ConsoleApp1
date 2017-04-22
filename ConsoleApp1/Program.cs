@@ -9,8 +9,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var OtherFunClass = new OtherFun();
-            OtherFunClass.LambdaFun2();
+            var NowFunClass = new DynamicAry();
+            NowFunClass.UserAPI();
 
         }
     }
@@ -26,8 +26,8 @@ namespace ConsoleApp1
             Func<int, int> addOne = x => x + 1;
             Func<int, int, int> calcArea = (x, y) => x * y; // two parameters
             Func<int> twentyFive = () => calcArea(addOne(four), addOne(four)); // no parameters
-            Console.WriteLine(twentyFive());
-         
+            Console.WriteLine(twentyFive().PlusFive());
+            
         }
         public void LambdaFun()
         {
@@ -123,10 +123,7 @@ namespace ConsoleApp1
         {
 
             var myary = new List<string>();
-            Console.WriteLine("You can input + item , add Ary ");
-            Console.WriteLine("You can input - item , del Ary ");
-            Console.WriteLine("You can input -- , Clear Ary ");
-            Console.WriteLine("You can input break , exit Loop ");
+            DisplayHeader();
 
             string LoopStatus = "";
             string StatusStr = null, itemStr = null;
@@ -148,25 +145,16 @@ namespace ConsoleApp1
                 switch (StatusStr)
                 {
                     case "+":
-                        myary.Add(itemStr);
-                        Console.WriteLine($"Ary add susses!:{itemStr}");
+                        AddFun(myary, itemStr);
                         break;
                     case "-":
-                        if (myary.Count > 0)
-                        {
-                            myary.Remove(itemStr);
-                            Console.WriteLine($" {itemStr} : Ary del susses!");
-                        }
+                        DelFun(myary, itemStr);
                         break;
                     case "--":
-                        myary.Clear();
-                        Console.WriteLine($"Ary Clear susses!");
+                        ClrFun(myary);
                         break;
                     case "show":
-                        for (int i = 0; i < myary.Count; i++)
-                        {
-                            Console.WriteLine($"目前陣列:{myary[i]}");
-                        }
+                        ShowFun(myary);
                         break;
                     default:
                         Console.WriteLine($"You Input the : {Status}");
@@ -178,7 +166,7 @@ namespace ConsoleApp1
             }
         }
 
-        public string StatusCheck(string Status)
+        static string StatusCheck(string Status)
         {
             String StatusStr = Status;
 
@@ -203,5 +191,49 @@ namespace ConsoleApp1
             }
             return StatusStr;
         }
+
+        static void DisplayHeader()
+        {
+            Console.WriteLine("You can input + item , add Ary ");
+            Console.WriteLine("You can input - item , del Ary ");
+            Console.WriteLine("You can input -- , Clear Ary ");
+            Console.WriteLine("You can input break , exit Loop ");
+        }
+
+        static void AddFun(List<string> myary, string itemStr)
+        {
+            myary.Add(itemStr);
+            Console.WriteLine($"Ary add susses!:{itemStr}");
+        }
+
+        static void DelFun(List<string> myary, string itemStr)
+        {
+            if (myary.Count > 0)
+            {
+                myary.Remove(itemStr);
+                Console.WriteLine($" {itemStr} : Ary del susses!");
+            }
+        }
+        static void ClrFun(List<string> myary)
+        {
+            myary.Clear();
+            Console.WriteLine($"Ary Clear susses!");
+        }
+        static void ShowFun(List<string> myary)
+        {
+            for (int i = 0; i < myary.Count; i++)
+            {
+                Console.WriteLine($"目前陣列:{myary[i]}");
+            }
+        }
     }
+    public static class ExtensionMethods
+    {
+        public static int PlusFive(this int input)
+        {
+            return input + 5;
+        }
+    }
+
 }
+
