@@ -9,25 +9,41 @@ namespace ConsoleApp1
     {        
         static void Main(string[] args)
         {
-            var RectangleClass = new Rectangle();
-            RectangleClass.Height = 100;
-            RectangleClass.Width = 50;
-            Console.WriteLine(RectangleClass.Perimeter());
-
-            var TriangleClass = new Triangle();
-            TriangleClass.Side1 = 1;
-            TriangleClass.Side2 = 2;
-            TriangleClass.Side3 = 3;
-            Console.WriteLine(TriangleClass.Perimeter());
+            
+            var NowClass = new ShapeAbstractSub();
+            NowClass.Height = 177;
+            NowClass.Width = 59;
+            Console.WriteLine(NowClass.Perimeter());
         }
     }
+
+    public abstract class ShapeAbstract
+    {
+        public abstract String Perimeter();
+    }
+
+    public class ShapeAbstractSub : ShapeAbstract
+    {
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public override String Perimeter()
+        {
+            return $"Height:{Height}  , Width:{Width}";
+        }
+    }
+
+
     public class Shape
     {
+        int versionNumber = 123;
         public virtual int Perimeter()
         {
             return 0;
         }
-        
+        public override string ToString()
+        {
+            return $"MyProgramName - Version {versionNumber}";
+        }
     }
     public class Rectangle : Shape
     {
