@@ -6,18 +6,90 @@ using System.Text;
 namespace ConsoleApp1
 {
     class Program
-    {
+    {        
         static void Main(string[] args)
         {
-            var NowFunClass = new OtherFun();
-            NowFunClass.TheWhileHomeWork();
+            var RectangleClass = new Rectangle();
+            RectangleClass.Height = 100;
+            RectangleClass.Width = 50;
+            Console.WriteLine(RectangleClass.Perimeter());
 
+            var TriangleClass = new Triangle();
+            TriangleClass.Side1 = 1;
+            TriangleClass.Side2 = 2;
+            TriangleClass.Side3 = 3;
+            Console.WriteLine(TriangleClass.Perimeter());
         }
     }
-    
+    public class Shape
+    {
+        public virtual int Perimeter()
+        {
+            return 0;
+        }
+        
+    }
+    public class Rectangle : Shape
+    {
+        public int Height { get; set; }
+        public int Width { get; set; }
 
+        public override int Perimeter()
+        {
+            return (Height + Width) * 2;
+        }
+    }
+    public class Triangle : Shape
+    {
+        public int Side1 { get; set; }
+        public int Side2 { get; set; }
+        public int Side3 { get; set; }
+
+        public override int Perimeter()
+        {
+            return Side1 + Side2 + Side3;
+        }
+    }
+
+
+
+    public class Speedometer
+    {
+        private int _currentSpeed;
+
+        public int CurrentSpeed
+        {
+            get
+            {
+                return _currentSpeed;
+            }
+            set
+            {
+                if (value < 0) return;
+                if (value > 120) return;
+
+                // value is a keyword used in setters representing the new value
+                _currentSpeed = value;
+            }
+        }
+
+        public int GetCurrentSpeed()
+        {
+            return _currentSpeed;
+        }
+        public void SetCurrentSpeed(int newSpeed)
+        {
+            if (newSpeed < 0) return;
+            if (newSpeed > 120) return;
+
+            _currentSpeed = newSpeed;
+        }
+
+    }
+       
     class OtherFun
     {
+        
         public void TheWhileHomeWork()
         {
             for(int Si=1; Si<=4; Si++)
