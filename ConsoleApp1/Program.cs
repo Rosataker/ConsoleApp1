@@ -9,13 +9,32 @@ namespace ConsoleApp1
     {        
         static void Main(string[] args)
         {
-            
-            var NowClass = new ShapeAbstractSub();
-            NowClass.Height = 177;
-            NowClass.Width = 59;
-            Console.WriteLine(NowClass.Perimeter());
+
+            //var NowClass = new ShapeAbstractSub();
+            //NowClass.Height = 177;
+            //NowClass.Width = 59;
+            //Console.WriteLine(NowClass.Perimeter());
+
+            var rectangle = new Rectangle();
+            rectangle.Height = 5;
+            rectangle.Width = 6;
+            var Program = new Program();
+            Program.DisplayShape(rectangle);
+
+            var triangle = new Triangle();
+            triangle.Side1 = 3;
+            triangle.Side2 = 4;
+            triangle.Side3 = 5;
+            Program.DisplayShape(triangle);
+        }
+
+        public void DisplayShape(Shape shape)
+        {
+            Console.WriteLine($"Shape Perimeter: {shape.Perimeter()}");
         }
     }
+
+
 
     public abstract class ShapeAbstract
     {
@@ -44,6 +63,12 @@ namespace ConsoleApp1
         {
             return $"MyProgramName - Version {versionNumber}";
         }
+
+    public void DisplayShape(Shape shape)
+    {
+        Console.WriteLine($"Shape Perimeter: {shape.Perimeter()}");
+    }
+
     }
     public class Rectangle : Shape
     {
