@@ -9,8 +9,8 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var NowFunClass = new DynamicAry();
-            NowFunClass.UserAPI();
+            var NowFunClass = new OtherFun();
+            NowFunClass.TheWhileHomeWork();
 
         }
     }
@@ -18,7 +18,19 @@ namespace ConsoleApp1
 
     class OtherFun
     {
-
+        public void TheWhileHomeWork()
+        {
+            for(int Si=1; Si<=4; Si++)
+            {
+                int Fi = Si;
+                for (int i = 0 ; i <= 24; i = i + Fi)
+                {
+                    Console.Write($"{i},");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
         public void LambdaFun2()
         {
 
