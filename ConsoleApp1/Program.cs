@@ -10,29 +10,78 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
-            //var NowClass = new ShapeAbstractSub();
-            //NowClass.Height = 177;
-            //NowClass.Width = 59;
-            //Console.WriteLine(NowClass.Perimeter());
+            var Now_Person_Class = new Lesson12of20Sub.Person();
+            var Now_Company_Class = new Lesson12of20Sub.Company();
+            Now_Person_Class.FirstName = "John";
+            Now_Person_Class.LastName = "Doe";
+            Now_Person_Class.StreetAddress = "123 Main Street ";
+            Now_Person_Class.City = "Sometown";
+            Now_Person_Class.Country = "OH";
+            Now_Person_Class.PostalCode = "12345";
+            Now_Person_Class.State = "United States";
+            
 
-            var rectangle = new Rectangle();
-            rectangle.Height = 5;
-            rectangle.Width = 6;
-            var Program = new Program();
-            Program.DisplayShape(rectangle);
+            Now_Person_Class.ShippingAddress();
+            Console.WriteLine("------------------------------------");
 
-            var triangle = new Triangle();
-            triangle.Side1 = 3;
-            triangle.Side2 = 4;
-            triangle.Side3 = 5;
-            Program.DisplayShape(triangle);
+
+            Now_Person_Class.FirstName = "ruby";
+            Now_Person_Class.LastName = "meol";
+            Now_Person_Class.ShippingAddress();
+            Console.WriteLine("------------------------------------");
+
+            Now_Company_Class.Name = "Acme, Inc.";
+            Now_Company_Class.StreetAddress = "123 Main Street ";
+            Now_Company_Class.City = "Sometown";
+            Now_Company_Class.Country = "OH";
+            Now_Company_Class.PostalCode = "12345";
+            Now_Company_Class.State = "United States";
+            Now_Company_Class.ShippingAddress();
+
+
         }
-
-        public void DisplayShape(Shape shape)
-        {
-            Console.WriteLine($"Shape Perimeter: {shape.Perimeter()}");
-        }
+         
     }
+
+    public class Lesson12of20Sub
+    {
+        public class Address
+        {
+            public string StreetAddress { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string PostalCode { get; set; }
+            public string Country { get; set; }
+            public virtual void ShippingAddress() { }
+        }
+        public class Person : Address
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public override void ShippingAddress ()
+            {
+                Console.WriteLine($"{FirstName} {LastName}");
+                Console.WriteLine($"{StreetAddress}");
+                Console.WriteLine($"{City} , {Country} , {PostalCode}");
+                Console.WriteLine($"{State}");
+            }
+        }
+        public class Company: Address
+        {
+            public string Name { get; set; }
+            public override void ShippingAddress()
+            {
+                Console.WriteLine($"{Name} ");
+                Console.WriteLine($"{StreetAddress}");
+                Console.WriteLine($"{City} , {Country} , {PostalCode}");
+                Console.WriteLine($"{State}");
+            }
+        }
+
+
+    }
+
+
 
 
 
@@ -40,7 +89,6 @@ namespace ConsoleApp1
     {
         public abstract String Perimeter();
     }
-
     public class ShapeAbstractSub : ShapeAbstract
     {
         public int Height { get; set; }
@@ -49,9 +97,7 @@ namespace ConsoleApp1
         {
             return $"Height:{Height}  , Width:{Width}";
         }
-    }
-
-
+    }    
     public class Shape
     {
         int versionNumber = 123;
@@ -64,10 +110,6 @@ namespace ConsoleApp1
             return $"MyProgramName - Version {versionNumber}";
         }
 
-    public void DisplayShape(Shape shape)
-    {
-        Console.WriteLine($"Shape Perimeter: {shape.Perimeter()}");
-    }
 
     }
     public class Rectangle : Shape
@@ -90,10 +132,7 @@ namespace ConsoleApp1
         {
             return Side1 + Side2 + Side3;
         }
-    }
-
-
-
+    }    
     public class Speedometer
     {
         private int _currentSpeed;
@@ -126,8 +165,7 @@ namespace ConsoleApp1
             _currentSpeed = newSpeed;
         }
 
-    }
-       
+    }       
     class OtherFun
     {
         
@@ -241,7 +279,6 @@ namespace ConsoleApp1
             Console.WriteLine($"mydate:{mydate} , oneYearAfter: {duration.TotalDays}  , totalBdate:{WdayiswhatDay}");
         }
     }
-
     class DynamicAry
     {
         public void UserAPI()
