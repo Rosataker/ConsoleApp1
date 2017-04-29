@@ -6,67 +6,58 @@ using System.Text;
 namespace ConsoleApp1
 {
     class Program
-    {        
+    {
         static void Main(string[] args)
         {
-
-            var Now_Person_Class = new Lesson12of20Sub.Person();
-            var Now_Company_Class = new Lesson12of20Sub.Company();
-            Now_Person_Class.FirstName = "John";
-            Now_Person_Class.LastName = "Doe";
-            Now_Person_Class.StreetAddress = "123 Main Street ";
-            Now_Person_Class.City = "Sometown";
-            Now_Person_Class.Country = "OH";
-            Now_Person_Class.PostalCode = "12345";
-            Now_Person_Class.State = "United States";
-            
-
-            Now_Person_Class.ShippingAddress();
-            Console.WriteLine("------------------------------------");
-
-
-            Now_Person_Class.FirstName = "ruby";
-            Now_Person_Class.LastName = "meol";
-            Now_Person_Class.ShippingAddress();
-            Console.WriteLine("------------------------------------");
-
-            Now_Company_Class.Name = "Acme, Inc.";
-            Now_Company_Class.StreetAddress = "123 Main Street ";
-            Now_Company_Class.City = "Sometown";
-            Now_Company_Class.Country = "OH";
-            Now_Company_Class.PostalCode = "12345";
-            Now_Company_Class.State = "United States";
-            Now_Company_Class.ShippingAddress();
-
-
+            var NowClass = new Lesson12of20Sub();
+            NowClass.Show();
         }
-         
+
     }
+
 
     public class Lesson12of20Sub
     {
-        public class Address
+
+        public Lesson12of20Sub()
         {
-            public string StreetAddress { get; set; }
-            public string City { get; set; }
-            public string State { get; set; }
-            public string PostalCode { get; set; }
-            public string Country { get; set; }
-            public virtual void ShippingAddress() { }
+            StreetAddress = "123 Main Street ";
+            City = "Sometown";
+            Country = "OH";
+            PostalCode = "12345";
+            State = "United States";
+
         }
-        public class Person : Address
+        public void Show()
+        {
+            var PersonClass = new Person();
+            PersonClass.FirstName = "John";
+            PersonClass.LastName = "Doe";
+            PersonClass.ShippingAddress();
+
+            PersonClass.FirstName = "Ruby";
+            PersonClass.LastName = "meol";
+            PersonClass.ShippingAddress();
+
+            var CompanyClass = new Company();
+            CompanyClass.Name = "Acme, Inc.";
+            CompanyClass.ShippingAddress();
+        }
+
+        public class Person : Lesson12of20Sub
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
-            public override void ShippingAddress ()
+            public override void ShippingAddress()
             {
                 Console.WriteLine($"{FirstName} {LastName}");
                 Console.WriteLine($"{StreetAddress}");
                 Console.WriteLine($"{City} , {Country} , {PostalCode}");
                 Console.WriteLine($"{State}");
+                Console.WriteLine("--------------------------------------");
             }
         }
-        public class Company: Address
+        public class Company : Lesson12of20Sub
         {
             public string Name { get; set; }
             public override void ShippingAddress()
@@ -77,9 +68,14 @@ namespace ConsoleApp1
                 Console.WriteLine($"{State}");
             }
         }
-
-
+        static string StreetAddress { get; set; }
+        static string City { get; set; }
+        static string State { get; set; }
+        static string PostalCode { get; set; }
+        static string Country { get; set; }
+        public virtual void ShippingAddress() { }
     }
+
 
 
 
@@ -97,7 +93,7 @@ namespace ConsoleApp1
         {
             return $"Height:{Height}  , Width:{Width}";
         }
-    }    
+    }
     public class Shape
     {
         int versionNumber = 123;
@@ -132,7 +128,7 @@ namespace ConsoleApp1
         {
             return Side1 + Side2 + Side3;
         }
-    }    
+    }
     public class Speedometer
     {
         private int _currentSpeed;
@@ -165,16 +161,16 @@ namespace ConsoleApp1
             _currentSpeed = newSpeed;
         }
 
-    }       
+    }
     class OtherFun
     {
-        
+
         public void TheWhileHomeWork()
         {
-            for(int Si=1; Si<=4; Si++)
+            for (int Si = 1; Si <= 4; Si++)
             {
                 int Fi = Si;
-                for (int i = 0 ; i <= 24; i = i + Fi)
+                for (int i = 0; i <= 24; i = i + Fi)
                 {
                     Console.Write($"{i},");
                 }
@@ -190,15 +186,16 @@ namespace ConsoleApp1
             Func<int, int, int> calcArea = (x, y) => x * y; // two parameters
             Func<int> twentyFive = () => calcArea(addOne(four), addOne(four)); // no parameters
             Console.WriteLine(twentyFive().PlusFive());
-            
+
         }
         public void LambdaFun()
         {
             Func<int, int> addOne = x => x + 1; // this is the lambda expression
             Console.WriteLine(addOne(4));
         }
-        public void Looping_collections(){
-            var myary = new List<int>() {2,4,6};
+        public void Looping_collections()
+        {
+            var myary = new List<int>() { 2, 4, 6 };
             Console.WriteLine("Numbers: " + String.Join(" ", myary));
             Console.WriteLine("Sum:" + myary.Sum(x => Convert.ToInt32(x)));
         }
@@ -389,6 +386,7 @@ namespace ConsoleApp1
             }
         }
     }
+
     public static class ExtensionMethods
     {
         public static int PlusFive(this int input)
@@ -396,6 +394,6 @@ namespace ConsoleApp1
             return input + 5;
         }
     }
-
 }
+
 
